@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>查询结果</title>
+    <style>
+        .divcss{height:100px; width:100%;word-wrap:break-word}
+    </style>
+</head>
+<body>
+    <h1>欢迎光临唯月初始</h1>
+    <a style="margin-left:5px" href="/">首页</a>
+    <a style="margin-left:10px" target="_blank" href="https://item.taobao.com/item.htm?spm=a1z10.1-c.w4004-16125089661.2.1e8646d0i5OHld&id=581027760237">淘宝店铺:唯月初始小店</a>
+    <a style="margin-left:10px" target="_blank" href="https://pan.baidu.com/s/1dFRUjHf">百度盘看号直达</a>
+    <a style="margin-left:10px" href="#">微信:weiyue7452</a>
+    <hr>
+<form action="" method="post">
+    <table>
+        <tbody>
+        <tr>
+            <td>宠物编号:</td>
+            <td><input type="text" name="tj_1"></td>
+            <td><input type="text" name="tj_2"></td>
+            <td><input type="text" name="tj_3"></td>
+        </tr>
+        <tr>
+            <td>账号编号:</td>
+            <td><input type="text" name="tj_4"></td>
+            <td><input type="submit" value="查询"></td>
+        </tr>
+        </tbody>
+    </table>
+</form>
+<h2>查询结果:</h2>
+    <div class="divcss">
+    <h3>找到{{ shuliang }}条数据</h3>
+        {% for foo in shuju %}
+        <p>账号编号:{{ foo.0 }}</p>
+        <p>石头数量:{{ foo.1 }}</p>
+        <p>账号等级:{{ foo.2 }}</p>
+        <p>更新时间:{{ foo.3 }}</p>
+        <p>宠物盒子:{{ foo.4 }}</p>
+        <hr>
+        {% endfor %}
+    </div>
+</body>
+</html>
