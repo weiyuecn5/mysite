@@ -25,8 +25,7 @@ SECRET_KEY = 'k6l-@-rflj2_@*5h^kf)q80yuky+$*w@4z9)j8v&^*opb@t#g6'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.wwvihs.cn']
-
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.wwvihs.cn','192.168.2.116','*']
 
 # Application definition
 
