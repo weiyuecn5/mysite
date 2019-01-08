@@ -58,7 +58,7 @@ def addshuju(request):
         gxsj=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) #更新时间
         try:
             if zhbh:
-                shuju=shujuku.objects.get(pk=zhbh)
+                shuju=shujuku.objects.get(账号编号=zhbh)
                 shuju.宠物=shuju.宠物+cwbh+','
                 if stsl:
                     shuju.石头数量=stsl
@@ -83,10 +83,29 @@ def delshuju(request,zhid):
     except:
         return HttpResponse('编号:%s 不存在!'%zhid)
 
+def add(request,zhid,st='0',dj='0',cw='0'): #/账号编号/石头数量/等级/宠物编号/
+    gxsj = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))  # 更新时间
+    try:
+        shuju=shujuku.objects.get(账号编号=zhid)
+        if st != '0':
+            shuju.石头数量 = st
+        if dj != '0':
+            shuju.等级 = dj
+        if cw != '0':
+            shuju.宠物 = shuju.宠物 + cw + ','
+        shuju.更新时间 = gxsj
+        shuju.save()
+        return HttpResponse('账号:%s 已更新!' % zhid)
+    except:
+        shuju = shujuku(账号编号=zhid, 石头数量=st, 等级=dj, 更新时间=gxsj, 宠物=cw+',')
+        shuju.save()
+        return HttpResponse('账号:%s 已更新!' % zhid)
+
+
 def get_data(a):
     all_cw='' #所有处理过的宠物数据
     li=[]
-    shuju = shujuku.objects.get(pk=a)
+    shuju = shujuku.objects.get(账号编号=a)
     for data in shuju.宠物.split(','):
         if len(data) > 4 or len(data) < 3:
             continue
