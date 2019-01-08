@@ -16,7 +16,7 @@ def index(request):
             cxjg = []
             if tj_4:
                 cxjg.append(get_data(tj_4))
-                print(cxjg)
+                # print(cxjg)
                 return render(request, 'jg.html', {'shuju': cxjg,'shuliang':len(cxjg)})
             elif tj_1 and tj_2 and tj_3:
                 for cw in shujuku.objects.all():
