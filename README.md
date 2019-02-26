@@ -7,6 +7,6 @@
 
 2.git add 指向需要提交的内容文件
 
-3.git commit -m "更新的说明"
+3.git commit -m "更新的说明"(如失败,输入下面代码 rm -f ./.Git/index.lock )
 
 4.git push origin master 提交到远程仓库
