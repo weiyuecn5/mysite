@@ -10,3 +10,20 @@
 3.git commit -m "更新的说明"(如失败,输入下面代码 rm -f ./.Git/index.lock )
 
 4.git push origin master 提交到远程仓库
+
+
+重构数据库:
+正确的方法如下：
+
+先到数据库把表删掉：drop table
+
+注释django中对应的Model
+
+执行以下命令：
+
+python manage.py makemigrations
+python manage.py migrate --fake
+去掉注释重新迁移
+
+python manage.py makemigrations
+python manage.py migrate
