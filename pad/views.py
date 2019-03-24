@@ -1,50 +1,45 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 import time
-from .models import *
+from django.http import HttpResponse
+from .models import shujuku,duizhao
 
 def index(request):
     if request.method=='GET':
-        return render(request,'index.html')
+        return render(request, 'index.html')
     else:
-        tj_1 = request.POST.get("tj_1")
-        tj_2 = request.POST.get("tj_2")
-        tj_3 = request.POST.get("tj_3")
-        tj_4 = request.POST.get("tj_4")
+        bh_1=request.POST.get('bh_1')
+        bh_2=request.POST.get('bh_2')
+        bh_3=request.POST.get('bh_3')
+        bh_4=request.POST.get('bh_4')
+        bh_5=request.POST.get('bh_5')
+        if bh_1 and bh_2 and bh_3 and bh_4 and bh_5:
+            shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
+            for shuju in shujus:
+                shuju.宠物=chuli(shuju.宠物)
+            return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+        elif bh_1 and bh_2 and bh_3 and bh_4:
+            shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4)
+            for shuju in shujus:
+                shuju.宠物=chuli(shuju.宠物)
+            return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+        elif bh_1 and bh_2 and bh_3:
+            shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3)
+            for shuju in shujus:
+                shuju.宠物=chuli(shuju.宠物)
+            return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+        elif bh_1 and bh_2:
+            shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
+            for shuju in shujus:
+                shuju.宠物=chuli(shuju.宠物)
+            return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+        elif bh_1:
+            shujus=shujuku.objects.filter(宠物__icontains=bh_1)
+            for shuju in shujus:
+                shuju.宠物=chuli(shuju.宠物)
+            return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+        else:
+            return render(request, 'index.html')
 
-        try:
-            cxjg = []
-            if tj_4:
-                cxjg.append(get_data(tj_4))
-                # print(cxjg)
-                return render(request, 'jg.html', {'shuju': cxjg,'shuliang':len(cxjg)})
-            elif tj_1 and tj_2 and tj_3:
-                for cw in shujuku.objects.all():
-                    if tj_1 in cw.宠物 and tj_2 in cw.宠物 and tj_3 in cw.宠物:
-                        cxjg.append(get_data(cw.账号编号))
-                if len(cxjg)>0:
-                    return render(request, 'jg.html', {'shuju': cxjg,'shuliang':len(cxjg)})
-                else:
-                    return render(request, 'jg.html', {'shuju': cxjg,'shuliang':len(cxjg)})
-            elif tj_1 and tj_2:
-                for cw in shujuku.objects.all():
-                    if tj_1 in cw.宠物 and tj_2 in cw.宠物:
-                        cxjg.append(get_data(cw.账号编号))
-                if len(cxjg)>0:
-                    return render(request, 'jg.html', {'shuju': cxjg,'shuliang':len(cxjg)})
-                else:
-                    return render(request, 'jg.html', {'shuju': cxjg,'shuliang':len(cxjg)})
-            elif tj_1:
-                for cw in shujuku.objects.all():
-                    if tj_1 in cw.宠物:
-                        cxjg.append(get_data(cw.账号编号))
-                if len(cxjg)>0:
-                    return render(request, 'jg.html', {'shuju': cxjg,'shuliang':len(cxjg)})
-                else:
-                    return render(request, 'jg.html', {'shuju': cxjg,'shuliang':len(cxjg)})
-        except:
-                return render(request,'jg.html',{'shuliang':0})
-        return  render(request,'jg.html',{'shuliang':0})
 
 def addshuju(request):
     if request.method == 'GET':
@@ -101,24 +96,28 @@ def add(request,zhid,st='0',dj='0',cw='0'): #/账号编号/石头数量/等级/�
         shuju.save()
         return HttpResponse('账号:%s 已更新!' % zhid)
 
-
-def get_data(a):
-    all_cw='' #所有处理过的宠物数据
-    li=[]
-    shuju = shujuku.objects.get(账号编号=a)
-    for data in shuju.宠物.split(','):
+def chuli(cw):
+    cw_1 = '\n7w5宠物:\n'
+    cw_2 = '5w宠物:\n'
+    cw_3 = '6000宠物:\n'
+    cw_4 = '15000宠物:\n'
+    cw_5 = '其他宠物:\n'
+    for data in cw.split(','):
         if len(data) > 4 or len(data) < 3:
             continue
         else:
             try:
                 a = duizhao.objects.get(pk=data)
-                all_cw = all_cw + '[' + a.宠物编号 + a.宠物名字 + '] '
-                shuju.宠物 = all_cw
+                if int(a.宠物价值)==75000:
+                    cw_1=cw_1+'[' + a.宠物编号 + a.宠物名字 + '] '
+                elif int(a.宠物价值)==50000:
+                    cw_2 = cw_2 + '[' + a.宠物编号 + a.宠物名字 + '] '
+                elif int(a.宠物价值)==6000:
+                    cw_3 = cw_3 + '[' + a.宠物编号 + a.宠物名字 + '] '
+                elif int(a.宠物价值) == 15000:
+                    cw_4 = cw_4 + '[' + a.宠物编号 + a.宠物名字 + '] '
+                else:
+                    cw_5 = cw_5+ '[' + a.宠物编号 + a.宠物名字 + '] '
             except:
                 pass
-    li.append(shuju.账号编号)
-    li.append(shuju.石头数量)
-    li.append(shuju.等级)
-    li.append(shuju.更新时间)
-    li.append(shuju.宠物)
-    return li
+    return cw_1+'\n'+cw_2+'\n'+cw_3+'\n'+cw_4+'\n'+cw_5

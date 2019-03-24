@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>查询结果</title>
-    <style>
-        .divcss{height:100px; width:100%;word-wrap:break-word}
-    </style>
+    <title>唯月初始</title>
 </head>
 <body>
     <h1>欢迎光临唯月初始</h1>
@@ -17,14 +14,24 @@
     <table>
         <tbody>
         <tr>
-            <td>宠物编号:</td>
-            <td><input type="text" name="tj_1"></td>
-            <td><input type="text" name="tj_2"></td>
-            <td><input type="text" name="tj_3"></td>
+            <td>宠物编号1:</td>
+            <td><input type="text" name="bh_1"></td>
         </tr>
         <tr>
-            <td>账号编号:</td>
-            <td><input type="text" name="tj_4"></td>
+            <td>宠物编号2:</td>
+            <td><input type="text" name="bh_2"></td>
+        </tr>
+        <tr>
+            <td>宠物编号3:</td>
+            <td><input type="text" name="bh_3"></td>
+        </tr>
+                <tr>
+            <td>宠物编号4:</td>
+            <td><input type="text" name="bh_4"></td>
+        </tr>
+        <tr>
+            <td>宠物编号5:</td>
+            <td><input type="text" name="bh_5"></td>
             <td><input type="submit" value="查询"></td>
         </tr>
         </tbody>
@@ -34,11 +41,11 @@
     <div class="divcss">
     <h3>找到{{ shuliang }}条数据</h3>
         {% for foo in shuju %}
-        <p>账号编号:{{ foo.0 }}</p>
-        <p>石头数量:{{ foo.1 }}</p>
-        <p>账号等级:{{ foo.2 }}</p>
-        <p>更新时间:{{ foo.3 }}</p>
-        <p>宠物盒子:{{ foo.4 }}</p>
+        <p>账号编号:{{ foo.账号编号 }}</p>
+        <p>石头数量:{{ foo.石头数量 }}</p>
+        <p>账号等级:{{ foo.等级 }}</p>
+        <p>更新时间:{{ foo.更新时间 }}</p>
+        <p>宠物盒子:{{ foo.宠物|linebreaksbr}}</p>
         <hr>
         {% endfor %}
     </div>

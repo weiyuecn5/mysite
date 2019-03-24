@@ -11,25 +11,20 @@
 
 4.git push origin master 提交到远程仓库
 
-
-
 重构数据库:
 正确的方法如下：
 先到数据库把表删掉：drop table
 注释django中对应的Model
 
 执行以下命令：
-
 python manage.py makemigrations
 python manage.py migrate --fake
 
 去掉注释重新迁移
-
 python manage.py makemigrations
 python manage.py migrate
 
 拉取最新代码
-
 第一种方法
    git fetch --all
    git reset --hard origin/master
