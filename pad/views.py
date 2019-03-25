@@ -50,6 +50,7 @@ def addshuju(request):
         zhdj=request.POST.get("zhdj") #账号等级
         cwbh=request.POST.get("cwbh") #宠物编号
         cwmz=request.POST.get("cwmz") #宠物名字
+        cwjz=request.POST.get("cwjz") #宠物名字
         gxsj=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) #更新时间
         try:
             if zhbh:
@@ -63,9 +64,9 @@ def addshuju(request):
                 shuju.save()
                 return HttpResponse('账号:%s 已更新!'%zhbh)
             if cwbh and cwmz:
-                shuju_id=duizhao(宠物编号=cwbh,宠物名字=cwmz)
+                shuju_id=duizhao(宠物编号=cwbh,宠物名字=cwmz,宠物价值=cwjz)
                 shuju_id.save()
-                return HttpResponse('%s:%s'%(cwbh,cwmz))
+                return HttpResponse('%s-%s-%s'%(cwbh,cwmz,cwjz))
         except:
             shuju=shujuku(账号编号=zhbh,石头数量=stsl,等级=zhdj,更新时间=gxsj,宠物=cwbh+',')
             shuju.save()
