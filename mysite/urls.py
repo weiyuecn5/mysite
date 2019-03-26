@@ -20,6 +20,7 @@ from pad import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index,name='index'),
+    path('wy/', views.wy, name='wy'),
     path('addshuju/', views.addshuju, name='addshuju'),
     path('add/<zhid>/<st>/<dj>/<cw>/',views.add,name='add'),#/账号编号/石头数量/等级/宠物编号/
     path('delshuju/<zhid>/', views.delshuju, name='delshuju'),
