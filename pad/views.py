@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import time
 from django.http import HttpResponse
-from .models import shujuku,duizhao
+from .models import *
 
 def index(request):
     if request.method=='GET':
@@ -121,23 +121,30 @@ def delshuju(request,zhid):
     except:
         return HttpResponse('编号:%s 不存在!'%zhid)
 
-def add(request,zhid,st='0',dj='0',cw='0'): #/账号编号/石头数量/等级/宠物编号/
+def add(request,wyid,zhid,st='0',dj='0',cw='0'): #/唯一键/账号编号/石头数量/等级/宠物编号/
     gxsj = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))  # 更新时间
-    try:
-        shuju=shujuku.objects.get(账号编号=zhid)
-        if st != '0':
-            shuju.石头数量 = st
-        if dj != '0':
-            shuju.等级 = dj
-        if cw != '0':
-            shuju.宠物 = shuju.宠物 + cw + ','
-        shuju.更新时间 = gxsj
-        shuju.save()
-        return HttpResponse('账号:%s 已更新!' % zhid)
-    except:
-        shuju = shujuku(账号编号=zhid, 石头数量=st, 等级=dj, 更新时间=gxsj, 宠物=cw+',')
-        shuju.save()
-        return HttpResponse('账号:%s 已更新!' % zhid)
+    shuju=huancun(唯一键=wyid,账号编号=zhid,石头数量=st,等级=dj,宠物=cw,更新时间=gxsj)
+    shuju.save()
+    return HttpResponse(wyid)
+
+def upshuju(request):
+    newdatas=huancun.objects.filter(是否上传='1')
+    for newdata in newdatas:
+        try:
+            shuju=shujuku.objects.get(账号编号=newdata.账号编号)
+            shuju.石头数量=newdata.石头数量
+            shuju.等级=newdata.等级
+            shuju.更新时间=newdata.更新时间
+            shuju.宠物=shuju.宠物+newdata.宠物+','
+            shuju.save()
+            newdata.是否上传='0'
+            newdata.save()
+        except:
+            shuju=shujuku(账号编号=newdata.账号编号,石头数量=newdata.石头数量,等级=newdata.等级,更新时间=newdata.更新时间,宠物=newdata.宠物+',')
+            shuju.save()
+            newdata.是否上传='0'
+            newdata.save()
+    return HttpResponse('更新')
 
 def chuli(cw):
     cw_1 = '\n7w5宠物:\n'
