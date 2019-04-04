@@ -152,7 +152,7 @@ def chuli(cw):
     cw_3 = '6000宠物:\n'
     cw_4 = '15000宠物:\n'
     cw_5 = '其他宠物:\n'
-    for data in set(cw.split(',')):
+    for data in cw.split(','):
         if len(data) > 4 or len(data) < 3:
             continue
         else:
