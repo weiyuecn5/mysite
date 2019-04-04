@@ -46,3 +46,6 @@ python manage.py migrate
 
    git pull
 
+重启服务器:
+
+gunicorn --bind unix:/tmp/wwvihs.cn.socket mysite.wsgi:application&
