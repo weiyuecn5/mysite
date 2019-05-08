@@ -53,32 +53,32 @@ def wy(request):
         if zhbh:
             shujus = shujuku.objects.filter(账号编号__icontains=zhbh)
             for shuju in shujus:
-                shuju.宠物=chuli_1(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2 and bh_3 and bh_4 and bh_5:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
             for shuju in shujus:
-                shuju.宠物=chuli_1(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2 and bh_3 and bh_4:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4)
             for shuju in shujus:
-                shuju.宠物=chuli_1(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2 and bh_3:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3)
             for shuju in shujus:
-                shuju.宠物=chuli_1(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
             for shuju in shujus:
-                shuju.宠物=chuli_1(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1)
             for shuju in shujus:
-                shuju.宠物=chuli_1(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         else:
             return render(request, 'wy.html')
@@ -147,10 +147,11 @@ def upshuju(request):
     return HttpResponse('更新')
 
 def chuli(cw):
-    cw_1 = '\n7w5宠物:\n'
-    cw_2 = '5w宠物:\n'
+    cw_1 = '\n75000宠物:\n'
+    cw_2 = '50000宠物:\n'
     cw_3 = '6000宠物:\n'
     cw_4 = '15000宠物:\n'
+    cw_6 = '25000宠物:\n'
     cw_5 = '其他宠物:\n'
     for data in cw.split(','):
         if len(data) > 4 or len(data) < 3:
@@ -162,15 +163,17 @@ def chuli(cw):
                     cw_1=cw_1+'[' + a.宠物编号 + a.宠物名字 + '] '
                 elif int(a.宠物价值)==50000:
                     cw_2 = cw_2 + '[' + a.宠物编号 + a.宠物名字 + '] '
-                elif int(a.宠物价值)==6000:
-                    cw_3 = cw_3 + '[' + a.宠物编号 + a.宠物名字 + '] '
+                elif int(a.宠物价值) == 25000:
+                    cw_6 = cw_6 + '[' + a.宠物编号 + a.宠物名字 + '] '
                 elif int(a.宠物价值) == 15000:
                     cw_4 = cw_4 + '[' + a.宠物编号 + a.宠物名字 + '] '
+                elif int(a.宠物价值)==6000:
+                    cw_3 = cw_3 + '[' + a.宠物编号 + a.宠物名字 + '] '
                 else:
                     cw_5 = cw_5+ '[' + a.宠物编号 + a.宠物名字 + '] '
             except:
                 pass
-    return cw_1+'\n'+cw_2+'\n'+cw_3+'\n'+cw_4+'\n'+cw_5
+    return cw_1+'\n'+cw_2+'\n'+cw_6+'\n'+cw_4+'\n'+cw_3+'\n'+cw_5
 
 def chuli_1(cw):
     cw_1 = '\n'
