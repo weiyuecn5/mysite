@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="72e7f479-9ada-4506-94cd-9b5d70a0ff38" name="Default" comment="5.21公司减少数据库大小">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/jg_1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
+    <list default="true" id="72e7f479-9ada-4506-94cd-9b5d70a0ff38" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pad/models.py" afterPath="$PROJECT_DIR$/pad/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pad/views.py" afterPath="$PROJECT_DIR$/pad/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/addshuju.html" afterPath="$PROJECT_DIR$/templates/addshuju.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/index.html" afterPath="$PROJECT_DIR$/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/jg.html" afterPath="$PROJECT_DIR$/templates/jg.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/wy.html" afterPath="$PROJECT_DIR$/templates/wy.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -579,7 +571,14 @@
       <option name="project" value="LOCAL" />
       <updated>1558406893724</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="5.21公司更新大量代码">
+      <created>1558426876553</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1558426876553</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -641,7 +640,8 @@
     <MESSAGE value="4.4公司更新" />
     <MESSAGE value="5.8公司更新代码 &#10;减少数据库大小" />
     <MESSAGE value="5.21公司减少数据库大小" />
-    <option name="LAST_COMMIT_MESSAGE" value="5.21公司减少数据库大小" />
+    <MESSAGE value="5.21公司更新大量代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="5.21公司更新大量代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
