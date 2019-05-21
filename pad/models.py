@@ -6,6 +6,9 @@ class shujuku(models.Model):
     等级=models.CharField(max_length=100,blank=True)
     更新时间=models.CharField(max_length=100,blank=True)
     宠物=models.TextField()
+    已卖=models.CharField(max_length=20,default='0')
+    买家=models.CharField(max_length=100,blank=True)
+    价格=models.CharField(max_length=100,blank=True)
 class duizhao(models.Model):
     宠物编号=models.CharField(max_length=100,primary_key=True)
     宠物名字=models.CharField(max_length=100,blank=True)

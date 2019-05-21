@@ -15,27 +15,32 @@ def index(request):
         if bh_1 and bh_2 and bh_3 and bh_4 and bh_5:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
+                if shuju.已卖=='0':
+                    shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2 and bh_3 and bh_4:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
+                if shuju.已卖=='0':
+                    shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2 and bh_3:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
+                if shuju.已卖=='0':
+                    shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
+                if shuju.已卖=='0':
+                    shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
+                if shuju.已卖=='0':
+                    shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         else:
             return render(request, 'index.html')
@@ -50,35 +55,48 @@ def wy(request):
         bh_4=request.POST.get('bh_4')
         bh_5=request.POST.get('bh_5')
         zhbh = request.POST.get('zhbh')
+        zhbh_1 = request.POST.get('zhbh_1')
         if zhbh:
             shujus = shujuku.objects.filter(账号编号__icontains=zhbh)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
+                if shuju.已卖=='0':
+                    shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+        elif zhbh_1:
+            shujus = shujuku.objects.filter(账号编号__icontains=zhbh_1)
+            for shuju in shujus:
+                if shuju.已卖=='0':
+                    shuju.宠物=chuli_1(shuju.宠物)
+            return render(request, 'jg_1.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2 and bh_3 and bh_4 and bh_5:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
+                if shuju.已卖=='0':
+                    shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2 and bh_3 and bh_4:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
+                if shuju.已卖=='0':
+                    shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2 and bh_3:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
+                if shuju.已卖=='0':
+                    shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
+                if shuju.已卖=='0':
+                    shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1)
             for shuju in shujus:
-                shuju.宠物=chuli(shuju.宠物)
+                if shuju.已卖=='0':
+                    shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         else:
             return render(request, 'wy.html')
@@ -93,6 +111,9 @@ def addshuju(request):
         cwbh=request.POST.get("cwbh") #宠物编号
         cwmz=request.POST.get("cwmz") #宠物名字
         cwjz=request.POST.get("cwjz") #宠物名字
+        yimai=request.POST.get("yimai") #是否已卖
+        maijia=request.POST.get("maijia") #买家
+        jiage=request.POST.get("jiage") #价格
         gxsj=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) #更新时间
         try:
             if zhbh:
@@ -109,6 +130,13 @@ def addshuju(request):
                 shuju_id=duizhao(宠物编号=cwbh,宠物名字=cwmz,宠物价值=cwjz)
                 shuju_id.save()
                 return HttpResponse('%s-%s-%s'%(cwbh,cwmz,cwjz))
+            if zhbh and yimai:
+                shuju = shujuku.objects.get(账号编号=zhbh)
+                shuju.已卖 = yimai
+                shuju.买家 = maijia
+                shuju.价格 = jiage
+                shuju.save()
+
         except:
             shuju=shujuku(账号编号=zhbh,石头数量=stsl,等级=zhdj,更新时间=gxsj,宠物=cwbh+',')
             shuju.save()
@@ -116,7 +144,8 @@ def addshuju(request):
 def delshuju(request,zhid):
     try:
         shuju=shujuku.objects.get(pk=zhid)
-        shuju.delete()
+        shuju.已卖='1'
+        shuju.save()
         return HttpResponse('编号:%s 已经删除!'%zhid)
     except:
         return HttpResponse('编号:%s 不存在!'%zhid)
