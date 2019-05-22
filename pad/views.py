@@ -134,6 +134,7 @@ def addshuju(request):
                 shuju.买家 = maijia
                 shuju.价格 = jiage
                 shuju.save()
+                return HttpResponse('账号:%s 已卖!' % zhbh)
 
         except:
             shuju=shujuku(账号编号=zhbh,石头数量=stsl,等级=zhdj,更新时间=gxsj,宠物=cwbh+',')
