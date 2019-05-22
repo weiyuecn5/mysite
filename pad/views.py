@@ -59,14 +59,12 @@ def wy(request):
         if zhbh:
             shujus = shujuku.objects.filter(账号编号__icontains=zhbh)
             for shuju in shujus:
-                if shuju.已卖=='0':
-                    shuju.宠物=chuli(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif zhbh_1:
             shujus = shujuku.objects.filter(账号编号__icontains=zhbh_1)
             for shuju in shujus:
-                if shuju.已卖=='0':
-                    shuju.宠物=chuli_1(shuju.宠物)
+                shuju.宠物=chuli_1(shuju.宠物)
             return render(request, 'jg_1.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2 and bh_3 and bh_4 and bh_5:
             shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
@@ -116,7 +114,7 @@ def addshuju(request):
         jiage=request.POST.get("jiage") #价格
         gxsj=time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time())) #更新时间
         try:
-            if zhbh:
+            if zhbh and cwbh:
                 shuju=shujuku.objects.get(账号编号=zhbh)
                 shuju.宠物=shuju.宠物+cwbh+','
                 if stsl:
