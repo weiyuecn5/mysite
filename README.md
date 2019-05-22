@@ -48,4 +48,10 @@ python manage.py migrate
 
 重启服务器:
 
+1.cd /home/wangmeng/sites/www.floweroman.com/
+
+2.source env/bin/activate
+
+3.cd blogProject
+
 gunicorn --bind unix:/tmp/wwvihs.cn.socket mysite.wsgi:application&
