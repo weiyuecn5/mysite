@@ -13,34 +13,29 @@ def index(request):
         bh_4=request.POST.get('bh_4')
         bh_5=request.POST.get('bh_5')
         if bh_1 and bh_2 and bh_3 and bh_4 and bh_5:
-            shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
+            shujus=shujuku.objects.filter(已卖__exact='0').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
             for shuju in shujus:
-                if shuju.已卖=='0':
-                    shuju.宠物=chuli(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2 and bh_3 and bh_4:
-            shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4)
+            shujus=shujuku.objects.filter(已卖__exact='0').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4)
             for shuju in shujus:
-                if shuju.已卖=='0':
-                    shuju.宠物=chuli(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2 and bh_3:
-            shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3)
+            shujus=shujuku.objects.filter(已卖__exact='0').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3)
             for shuju in shujus:
-                if shuju.已卖=='0':
-                    shuju.宠物=chuli(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2:
-            shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
+            shujus=shujuku.objects.filter(已卖__exact='0').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
             for shuju in shujus:
-                if shuju.已卖=='0':
-                    shuju.宠物=chuli(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1:
-            shujus=shujuku.objects.filter(宠物__icontains=bh_1)
+            shujus=shujuku.objects.filter(已卖__exact='0').filter(宠物__icontains=bh_1)
             for shuju in shujus:
-                if shuju.已卖=='0':
-                    shuju.宠物=chuli(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         else:
             return render(request, 'index.html')
@@ -67,34 +62,29 @@ def wy(request):
                 shuju.宠物=chuli_1(shuju.宠物)
             return render(request, 'jg_1.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2 and bh_3 and bh_4 and bh_5:
-            shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
+            shujus=shujuku.objects.filter(已卖__exact='0').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
             for shuju in shujus:
-                if shuju.已卖=='0':
-                    shuju.宠物=chuli(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2 and bh_3 and bh_4:
-            shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4)
+            shujus=shujuku.objects.filter(已卖__exact='0').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4)
             for shuju in shujus:
-                if shuju.已卖=='0':
-                    shuju.宠物=chuli(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2 and bh_3:
-            shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3)
+            shujus=shujuku.objects.filter(已卖__exact='0').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3)
             for shuju in shujus:
-                if shuju.已卖=='0':
-                    shuju.宠物=chuli(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1 and bh_2:
-            shujus=shujuku.objects.filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
+            shujus=shujuku.objects.filter(已卖__exact='0').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2)
             for shuju in shujus:
-                if shuju.已卖=='0':
-                    shuju.宠物=chuli(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif bh_1:
-            shujus=shujuku.objects.filter(宠物__icontains=bh_1)
+            shujus=shujuku.objects.filter(已卖__exact='0').filter(宠物__icontains=bh_1)
             for shuju in shujus:
-                if shuju.已卖=='0':
-                    shuju.宠物=chuli(shuju.宠物)
+                shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         else:
             return render(request, 'wy.html')
