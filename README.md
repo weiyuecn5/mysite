@@ -46,12 +46,18 @@ python manage.py migrate
 
    git pull
 
+本地代码强制覆盖git代码
+
+  git push origin master --force
+
+  deactivate #退出虚拟环境
+
 重启服务器:
 
-1.cd /home/wangmeng/sites/www.floweroman.com/
+1.cd ~/sites/wwvihs.cn/
 
-2.source env/bin/activate
+2.source env/bin/activate #进入虚拟环境
 
-3.cd blogProject
+3.cd mysite
 
 gunicorn --bind unix:/tmp/wwvihs.cn.socket mysite.wsgi:application&
