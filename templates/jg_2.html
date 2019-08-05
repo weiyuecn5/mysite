@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>唯月初始</title>
+</head>
+<body>
+<h2>查询结果:</h2>
+    <div class="divcss">
+    <h3>找到{{ shuliang }}条数据</h3>
+        {% for foo in shuju %}
+        <p>{{ foo.账号编号 }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>

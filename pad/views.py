@@ -49,6 +49,7 @@ def wy(request):
         bh_3=request.POST.get('bh_3')
         bh_4=request.POST.get('bh_4')
         bh_5=request.POST.get('bh_5')
+        xcbh=request.POST.get('xcbh')
         zhbh = request.POST.get('zhbh')
         zhbh_1 = request.POST.get('zhbh_1')
         if zhbh:
@@ -56,6 +57,9 @@ def wy(request):
             for shuju in shujus:
                 shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
+        elif xcbh:
+            shujus = huancun.objects.filter(宠物__icontains=xcbh)
+            return render(request, 'jg_2.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif zhbh_1:
             shujus = shujuku.objects.filter(账号编号__icontains=zhbh_1)
             for shuju in shujus:
