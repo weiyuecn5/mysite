@@ -58,8 +58,12 @@ def wy(request):
                 shuju.宠物=chuli(shuju.宠物)
             return render(request, 'jg.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif xcbh:
-            shujus = huancun.objects.filter(宠物__icontains=xcbh)
-            return render(request, 'jg_2.html', {'shuju': shujus, 'shuliang': len(shujus)})
+            if xcbh=='9999':
+                shujus=huancun.objects.all()
+                return render(request, 'jg_2.html', {'shuju': shujus, 'shuliang': len(shujus)})
+            else:
+                shujus = huancun.objects.filter(宠物__icontains=xcbh)
+                return render(request, 'jg_2.html', {'shuju': shujus, 'shuliang': len(shujus)})
         elif zhbh_1:
             shujus = shujuku.objects.filter(账号编号__icontains=zhbh_1)
             for shuju in shujus:
