@@ -25,4 +25,5 @@ urlpatterns = [
     path('add/<wyid>/<zhid>/<st>/<dj>/<cw>/',views.add,name='add'),#/账号编号/石头数量/等级/宠物编号/
     path('delshuju/<zhid>/', views.delshuju, name='delshuju'),
     path('upshuju/', views.upshuju,name='upshuju'),
+    path('qd/', views.qd,name='qd'),
 ]

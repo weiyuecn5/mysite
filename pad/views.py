@@ -2,6 +2,7 @@ from django.shortcuts import render
 import time
 from django.http import HttpResponse
 from .models import *
+import os
 
 def index(request):
     if request.method=='GET':
@@ -153,6 +154,7 @@ def add(request,wyid,zhid,st='0',dj='0',cw='0'): #/唯一键/账号编号/石头
     shuju.save()
     return HttpResponse(wyid)
 
+
 def upshuju(request):
     newdatas=huancun.objects.filter(是否上传='1')
     for newdata in newdatas:
@@ -213,3 +215,13 @@ def chuli_1(cw):
             except:
                 pass
     return cw_1+'\n'
+
+def qd(request):
+    shujus = shujuku.objects.all()
+    if os.path.exists('清单.txt'):
+        os.remove('清单.txt')
+    with open('清单.txt','w+',encoding='utf-8') as f:
+        for shuju in shujus:
+            if shuju.已卖=='0':
+                f.write(shuju.账号编号+'\n')
+    return render(request, 'qd.html', {'shuju': shujus, 'shuliang': len(shujus)})
