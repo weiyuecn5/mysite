@@ -215,13 +215,3 @@ def chuli_1(cw):
             except:
                 pass
     return cw_1+'\n'
-
-def qd(request):
-    shujus = shujuku.objects.all()
-    if os.path.exists('清单.txt'):
-        os.remove('清单.txt')
-    with open('清单.txt','w+',encoding='utf-8') as f:
-        for shuju in shujus:
-            if shuju.已卖=='0':
-                f.write(shuju.账号编号+'\n')
-    return render(request, 'qd.html', {'shuju': shujus, 'shuliang': len(shujus)})
