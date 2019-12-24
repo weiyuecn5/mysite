@@ -14,8 +14,7 @@ class duizhao(models.Model):
     宠物名字=models.CharField(max_length=100,blank=True)
     宠物价值 = models.CharField(max_length=100, blank=True)
 
-    def __str__(self):
-        return self.账号编号
+
 class huancun(models.Model):
     #缓存数据库 存放新加入的数据
     #唯一键=账号编号-石头数量-宠物-时间
