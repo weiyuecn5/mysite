@@ -148,11 +148,15 @@ def delshuju(request,zhid):
     except:
         return HttpResponse('编号:%s 不存在!'%zhid)
 
-def add(request,wyid,zhid,st='0',dj='0',cw='0'): #/唯一键/账号编号/石头数量/等级/宠物编号/
+def add(request,zhid,st='0',dj='0',cw='0'): #/账号编号/石头数量/等级/宠物编号/
     gxsj = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))  # 更新时间
-    shuju=huancun(唯一键=wyid,账号编号=zhid,石头数量=st,等级=dj,宠物=cw,更新时间=gxsj)
+    shuju = shujuku.objects.get(账号编号=zhid)
+    shuju.宠物 = shuju.宠物 + cw+','
+    shuju.石头数量 = st
+    shuju.等级 = dj
+    shuju.更新时间 = gxsj
     shuju.save()
-    return HttpResponse(wyid)
+    return HttpResponse('更新:%s-%s-%s' % (zhid,st,cw))
 
 
 def upshuju(request):
