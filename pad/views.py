@@ -6,13 +6,16 @@ import os
 
 def index(request):
     if request.method=='GET':
-        return render(request, 'index.html')
+        hot=Hot.objects.first()
+        wx=Post.objects.all()
+        return render(request, 'index.html',{'hot':hot,'xw':wx})
     else:
         bh_1=request.POST.get('bh_1')
         bh_2=request.POST.get('bh_2')
         bh_3=request.POST.get('bh_3')
         bh_4=request.POST.get('bh_4')
         bh_5=request.POST.get('bh_5')
+
         if bh_1 and bh_2 and bh_3 and bh_4 and bh_5:
             shujus=shujuku.objects.filter(已卖__exact='0').filter(宠物__icontains=bh_1).filter(宠物__icontains=bh_2).filter(宠物__icontains=bh_3).filter(宠物__icontains=bh_4).filter(宠物__icontains=bh_5)
             for shuju in shujus:
@@ -150,13 +153,18 @@ def delshuju(request,zhid):
 
 def add(request,zhid,st='0',dj='0',cw='0'): #/账号编号/石头数量/等级/宠物编号/
     gxsj = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(time.time()))  # 更新时间
-    shuju = shujuku.objects.get(账号编号=zhid)
-    shuju.宠物 = shuju.宠物 + cw+','
-    shuju.石头数量 = st
-    shuju.等级 = dj
-    shuju.更新时间 = gxsj
-    shuju.save()
-    return HttpResponse('更新:%s-%s-%s' % (zhid,st,cw))
+    try:
+        shuju = shujuku.objects.get(账号编号=zhid)
+        shuju.宠物 = shuju.宠物 + cw+','
+        shuju.石头数量 = st
+        shuju.等级 = dj
+        shuju.更新时间 = gxsj
+        shuju.save()
+        return HttpResponse('更新:%s-%s-%s' % (zhid,st,cw))
+    except:
+        shuju=shujuku(账号编号=zhid,宠物=cw+',',石头数量 = st,等级 = dj,更新时间 = gxsj)
+        shuju.save()
+        return HttpResponse('加入:%s-%s-%s' % (zhid,st,cw))
 
 
 def upshuju(request):

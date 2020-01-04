@@ -36,6 +36,17 @@
         </tr>
         </tbody>
     </table>
+    <tbody>
+        <h4>热门宠物编号:</h4>
+        <p>{{ hot.name }}</p>
+        {% for foo in xw %}
+        <h4>{{ foo.title }}</h4>
+        <p>{{ foo.body }}</p>
+        <p>{{ foo.modified_time }}</p>
+        {% endfor %}
+    </tbody>
+
+
 </form>
 <h2>使用说明:</h2>
 <p>直接在宠物编号右侧的输入框输入宠物编号,最多支持五个宠物组合查找</p>
